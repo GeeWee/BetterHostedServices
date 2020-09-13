@@ -18,24 +18,11 @@ namespace BetterHostedServices
                 .AddTransient<IApplicationEnder, ApplicationLifetimeEnder>();
         }
 
-
-
-
-        // Stolen from https://stackoverflow.com/a/52398431/8007580
-        /**
-     * This registers a HostedService, both as an IHostedService, but also as part of the normal
-     * DI flow, where you can define the interface it is injected via as well.
-     *
-     * The service is registered as a singleton in the DI framework
-     *
-     * TService is the interface which the implementation should be injected via
-     * and TImplementation is the actual class.
-     */
-
-
         /// <summary>
         /// This registers an IHostedService, both as a HostedService, but also as a Singleton in the DI container
         /// so other services can get references to it.
+        ///
+        /// Heavily inspired by https://stackoverflow.com/a/52398431/8007580
         /// </summary>
         /// <typeparam name="TService">The interface type that the IHostedService should be available under in the DI</typeparam>
         /// <typeparam name="TImplementation">The concrete type of the IHostedService to instantiate</typeparam>
@@ -51,6 +38,8 @@ namespace BetterHostedServices
         /// <summary>
         /// This registers an IHostedService, both as a HostedService, but also as a Singleton in the DI container
         /// so other services can get references to it.
+        ///
+        /// Heavily inspired by https://stackoverflow.com/a/52398431/8007580
         /// </summary>
         /// <typeparam name="TService">The concrete type of the IHostedService to instantiate.</typeparam>
         public static void AddHostedServiceAsSingleton<TService>(this IServiceCollection services)
