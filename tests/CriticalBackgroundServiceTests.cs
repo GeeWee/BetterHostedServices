@@ -56,6 +56,14 @@ namespace BetterHostedServices.Test
             var client = factory.CreateClient();
             var res = await client.GetAsync("/");
 
+            // Task is hella flaky because it depends on the internals of the IHostedService - try yielding a bunch of times
+            // to hope that it's done requesting application shutdown at this point
+            for (int i = 0; i < 10; i++)
+            {
+                await Task.Delay(50);
+                await Task.Yield();
+            }
+
             // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
             applicationEnder.ShutDownRequested.Should().BeTrue();
 
