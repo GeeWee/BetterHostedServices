@@ -27,4 +27,19 @@ namespace AspNetCoreTestProject
         {
         }
     }
+
+    public class StubCriticalBackgroundService : CriticalBackgroundService
+    {
+        public bool Activated { get; private set; } = false;
+
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            await Task.Yield(); // Hand over control explicitly
+            this.Activated = true;
+        }
+
+        public StubCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        {
+        }
+    }
 }

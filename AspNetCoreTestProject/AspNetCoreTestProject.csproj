@@ -7,6 +7,6 @@
   <ItemGroup Label="Project References">
     <ProjectReference Include="..\src\BetterHostedServices.csproj" />
   </ItemGroup>
-  
+
 
 </Project>
