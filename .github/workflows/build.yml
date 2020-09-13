@@ -43,11 +43,6 @@ jobs:
     - name: 'Dotnet Cake Build'
       run: dotnet cake --target=Build
       shell: pwsh
-#      todo delete
-#    - uses: actions/checkout@v2
-#    - name: Setup tmate session
-#      uses: mxschmitt/action-tmate@v3
-#      todo end
     - name: 'Dotnet Test'
       run: dotnet test
     - name: 'Dotnet Cake Pack'

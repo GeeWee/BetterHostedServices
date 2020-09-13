@@ -16,6 +16,9 @@ namespace BetterHostedServices
     {
         private Task _executingTask;
         private readonly CancellationTokenSource _stoppingCts = new CancellationTokenSource();
+        /// <summary>
+        /// Use this if you want to shutdown the application.
+        /// </summary>
         protected IApplicationEnder _applicationEnder;
 
         /// <summary>
