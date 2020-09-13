@@ -5,6 +5,7 @@ namespace BetterHostedServices.Test
     using BetterHostedServices;
     using FluentAssertions;
     using HostedServices;
+    using IntegrationUtils;
     using Microsoft.AspNetCore.Mvc.Testing;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;

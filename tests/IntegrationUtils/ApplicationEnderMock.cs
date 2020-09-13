@@ -1,8 +1,8 @@
-namespace BetterHostedServices.Test
+namespace BetterHostedServices.Test.IntegrationUtils
 {
     public class ApplicationEnderMock : IApplicationEnder
     {
         public bool ShutDownRequested { get; private set; } = false;
-        public void ShutDownApplication() => ShutDownRequested = true;
+        public void ShutDownApplication() => this.ShutDownRequested = true;
     }
 }

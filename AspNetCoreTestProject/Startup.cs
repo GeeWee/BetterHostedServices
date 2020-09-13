@@ -10,7 +10,7 @@ using Microsoft.Extensions.Hosting;
 
 namespace AspNetCoreTestProject
 {
-    using DefaultNamespace;
+    using BetterHostedServices;
 
     public class Startup
     {
@@ -18,8 +18,6 @@ namespace AspNetCoreTestProject
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            // services.AddHostedService<TestHostedService>();
-
             services.AddBetterHostedServices();
             services.AddHostedService<YieldingAndThenCrashingCriticalBackgroundService>();
 

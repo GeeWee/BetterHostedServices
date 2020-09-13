@@ -10,7 +10,7 @@ namespace AspNetCoreTestProject
         protected override Task ExecuteAsync(CancellationToken stoppingToken) =>
             throw new Exception("Crash right away");
 
-        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
+        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
         {
         }
     }
@@ -23,7 +23,7 @@ namespace AspNetCoreTestProject
             throw new Exception("Crash after yielding");
         }
 
-        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
+        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
         {
         }
     }
