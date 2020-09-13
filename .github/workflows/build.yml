@@ -45,13 +45,12 @@ jobs:
       run: dotnet cake --target=Build
       shell: pwsh
 #      todo delete
-    - uses: actions/checkout@v2
-    - name: Setup tmate session
-      uses: mxschmitt/action-tmate@v3
+#    - uses: actions/checkout@v2
+#    - name: Setup tmate session
+#      uses: mxschmitt/action-tmate@v3
 #      todo end
     - name: 'Dotnet Test'
       run: dotnet test
-      shell: pwsh
     - name: 'Dotnet Cake Pack'
       run: dotnet cake --target=Pack
       shell: pwsh
