@@ -48,8 +48,8 @@ namespace BetterHostedServices.Test
             {
                 builder.ConfigureTestServices(services =>
                 {
+                    services.AddTransient<IApplicationEnder>(s => applicationEnder);
                     services.AddHostedService<CriticalBackgroundServices.YieldingAndThenCrashingCriticalBackgroundService>();
-                    services.AddSingleton<IApplicationEnder>(s => applicationEnder);
                 });
             });
 
