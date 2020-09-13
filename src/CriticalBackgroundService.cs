@@ -43,8 +43,6 @@ namespace BetterHostedServices
         {
             Console.Error.WriteLine($"Error happened while executing CriticalBackgroundTask {this.GetType().FullName}. Shutting down.");
             Console.Error.WriteLine(exceptionFromExecuteAsync.ToString());
-            Console.WriteLine("ENVIRONMENT EXIT??");
-
             this._applicationEnder.ShutDownApplication();
         }
 
@@ -68,7 +66,6 @@ namespace BetterHostedServices
             // until the grace period is over.
             this._executingTask.ContinueWith(t =>
             {
-                Console.WriteLine("ERROR???");
                 if (t.Exception !=  null)
                 {
                     this.OnError(t.Exception);
