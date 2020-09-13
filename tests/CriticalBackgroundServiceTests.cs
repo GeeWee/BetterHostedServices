@@ -25,14 +25,11 @@ namespace BetterHostedServices.Test
         [Fact]
         public void WhenBackgroundService_ErrorsWithoutYielding_ApplicationCrashes()
         {
-            // var lifeTimeMock = new IHostApplicationLifetimeMock();
-
             var factory = this._factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureTestServices(services =>
                 {
                     services.AddHostedService<CriticalBackgroundServices.ImmediatelyCrashingCriticalBackgroundService>();
-                    // services.AddSingleton<IHostApplicationLifetime>(s => lifeTimeMock);
                 });
             });
 
@@ -43,7 +40,7 @@ namespace BetterHostedServices.Test
         }
 
         [Fact]
-        public async Task WhenCriticalBackgroundService_YieldsBeforeThrowingError_ApplicationShouldWork()
+        public void WhenCriticalBackgroundService_YieldsBeforeThrowingError_ApplicationShouldWork()
         {
             var applicationEnder = new ApplicationEnderMock();
 
@@ -55,10 +52,6 @@ namespace BetterHostedServices.Test
                     services.AddSingleton<IApplicationEnder>(s => applicationEnder);
                 });
             });
-
-            // Assert this also crashes, even though yielding happened
-            // Action createClientAction = () => factory
-                // .CreateClient();
 
             var client = factory.CreateClient();
 
