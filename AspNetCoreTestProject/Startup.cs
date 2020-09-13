@@ -30,6 +30,14 @@ namespace AspNetCoreTestProject
             services.AddControllers();
             services.AddBetterHostedServices();
             services.AddHostedServiceAsSingleton<StubCriticalBackgroundService>();
+
+            // Examples of how different services act. Comment one out and see for yourself!
+
+            // services.AddHostedService<WaitingForeverHostedService>(); // This will never let the application start
+            // services.AddHostedService<ImmediatelyCrashingBackgroundService>(); // This will crash the application
+            // services.AddHostedService<YieldingAndThenCrashingBackgroundService>(); // This will not crash the application
+            // services.AddHostedService<ImmediatelyCrashingCriticalBackgroundService>(); // Crash
+            // services.AddHostedService<YieldingAndThenCrashingCriticalBackgroundService>(); // Crash
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
