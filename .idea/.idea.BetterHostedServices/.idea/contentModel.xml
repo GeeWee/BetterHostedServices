@@ -9,10 +9,6 @@
     <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.7.1/build/netcoreapp2.1" t="Include">
       <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
     </e>
-    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.LegacyThreadSwitchingMembers.txt" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.MainThreadAssertingMethods.txt" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.MainThreadSwitchingMethods.txt" t="Include" />
-    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.MembersRequiringMainThread.txt" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll" t="Include" />
     <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
@@ -51,10 +47,6 @@
           <e p="workflows" t="Include" />
         </e>
       </e>
-      <e p="Tests/.editorconfig" t="Include" />
-      <e p="Tests/Directory.Build.props" t="Include" />
-      <e p="appveyor.yml" t="Include" />
-      <e p="azure-pipelines.yml" t="Include" />
       <e p="build.cake" t="Include" />
       <e p="dotnet-tools.json" t="Include" />
       <e p="global.json" t="Include" />
@@ -87,6 +79,5 @@
         </e>
       </e>
     </e>
-    <e p="$PROJECT_DIR$/../Images/Icon.png" t="Include" />
   </component>
 </project>

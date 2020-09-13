@@ -1,6 +1,6 @@
 <Project>
 
-  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+<!--  <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Build.props', '$(MSBuildThisFileDirectory)../'))" />-->
 
   <PropertyGroup Label="Build">
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -25,7 +25,7 @@
   </ItemGroup>
 
   <ItemGroup Label="Files">
-    <None Include="..\..\Images\Icon.png" Pack="true" PackagePath="\" />
+    <None Include="..\Images\Icon.png" Pack="true" PackagePath="\" />
   </ItemGroup>
 
 </Project>

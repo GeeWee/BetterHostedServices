@@ -1,11 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="1ac88768-5fc1-472e-bd6a-040beccd1661" name="Default Changelist" comment="" />
+    <list default="true" id="1ac88768-5fc1-472e-bd6a-040beccd1661" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BetterHostedServices/.idea/contentModel.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BetterHostedServices/.idea/contentModel.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BetterHostedServices/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BetterHostedServices/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.BetterHostedServices/riderModule.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.BetterHostedServices/riderModule.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BetterHostedServices.sln" beforeDir="false" afterPath="$PROJECT_DIR$/BetterHostedServices.sln" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/build.cake" beforeDir="false" afterPath="$PROJECT_DIR$/build.cake" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/src/Directory.Build.props" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/Directory.Build.props" beforeDir="false" afterPath="$PROJECT_DIR$/tests/Directory.Build.props" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="HighlightingSettingsPerFile">
+    <setting file="file://$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.7.1/build/netcoreapp2.1/Microsoft.NET.Test.Sdk.Program.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
@@ -13,9 +27,12 @@
         <option value="$PROJECT_DIR$/.github/workflows/release-drafter.yml" />
         <option value="$PROJECT_DIR$/.github/workflows/build.yml" />
         <option value="$PROJECT_DIR$/tests/BetterHostedServices.Test/BetterHostedServices.Test.csproj" />
-        <option value="$PROJECT_DIR$/BetterHostedServices.sln" />
         <option value="$PROJECT_DIR$/tests/BetterHostedServices.Test.csproj" />
+        <option value="$PROJECT_DIR$/src/BetterHostedServices.csproj" />
+        <option value="$PROJECT_DIR$/tests/Directory.Build.props" />
         <option value="$PROJECT_DIR$/src/Directory.Build.props" />
+        <option value="$PROJECT_DIR$/BetterHostedServices.sln" />
+        <option value="$PROJECT_DIR$/build.cake" />
       </list>
     </option>
   </component>
@@ -47,22 +64,35 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599977875627</updated>
-      <workItem from="1599977880580" duration="627000" />
+      <workItem from="1599977880580" duration="658000" />
+      <workItem from="1599978551632" duration="393000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
-  <component name="UnityProjectConfiguration" hasMinimizedUI="null" />
+  <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="248" y="428" width="943" height="826" key="find.popup" timestamp="1599978437722">
+    <state x="100" y="100" width="1374" height="1192" key="DiffContextDialog" timestamp="1599978678868">
       <screen x="0" y="0" width="2560" height="1392" />
     </state>
-    <state x="248" y="428" width="943" height="826" key="find.popup/0.0.2560.1392/2560.0.2560.1440@0.0.2560.1392" timestamp="1599978437722" />
+    <state x="100" y="100" width="1374" height="1192" key="DiffContextDialog/0.0.2560.1392/2560.0.2560.1440@0.0.2560.1392" timestamp="1599978678868" />
+    <state x="476" y="403" width="611" height="592" key="VcsDiffUtil.ChangesDialog" timestamp="1599978615706">
+      <screen x="0" y="0" width="2560" height="1392" />
+    </state>
+    <state x="476" y="403" width="611" height="592" key="VcsDiffUtil.ChangesDialog/0.0.2560.1392/2560.0.2560.1440@0.0.2560.1392" timestamp="1599978615706" />
+    <state x="572" y="360" width="943" height="826" key="find.popup" timestamp="1599978824471">
+      <screen x="0" y="0" width="2560" height="1392" />
+    </state>
+    <state x="572" y="360" width="943" height="826" key="find.popup/0.0.2560.1392/2560.0.2560.1440@0.0.2560.1392" timestamp="1599978824471" />
+    <state x="450" y="317" width="672" height="678" key="search.everywhere.popup" timestamp="1599978599362">
+      <screen x="0" y="0" width="2560" height="1392" />
+    </state>
+    <state x="450" y="317" width="672" height="678" key="search.everywhere.popup/0.0.2560.1392/2560.0.2560.1440@0.0.2560.1392" timestamp="1599978599362" />
   </component>
 </project>
