@@ -18,4 +18,17 @@ namespace BetterHostedServices.Test.HostedServices
             throw new Exception("Crash after yielding");
         }
     }
+
+    public class MyHostedService: IHostedService
+    {
+        public async Task StartAsync(CancellationToken cancellationToken)
+        {
+            while (!cancellationToken.IsCancellationRequested)
+            {
+                // Do some stuff here
+            }
+        }
+
+        public Task StopAsync(CancellationToken cancellationToken) => Task.CompletedTask;
+    }
 }
