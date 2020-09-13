@@ -22,10 +22,9 @@
 
   <ItemGroup Label="Package References">
     <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="all" Version="1.0.0" />
-  </ItemGroup>
 
-  <ItemGroup Label="Files">
-    <None Include="..\Images\Icon.png" Pack="true" PackagePath="\" />
+      <!--    Needed packages-->
+      <PackageReference Include="Microsoft.Extensions.Hosting" Version="3.1.8" />
   </ItemGroup>
 
 </Project>
