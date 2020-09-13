@@ -12,8 +12,18 @@
       <list>
         <option value="$PROJECT_DIR$/.github/workflows/release-drafter.yml" />
         <option value="$PROJECT_DIR$/.github/workflows/build.yml" />
+        <option value="$PROJECT_DIR$/tests/BetterHostedServices.Test/BetterHostedServices.Test.csproj" />
+        <option value="$PROJECT_DIR$/BetterHostedServices.sln" />
+        <option value="$PROJECT_DIR$/tests/BetterHostedServices.Test.csproj" />
+        <option value="$PROJECT_DIR$/src/Directory.Build.props" />
       </list>
     </option>
+  </component>
+  <component name="JsFlowSettings">
+    <service-enabled>true</service-enabled>
+    <exe-path />
+    <other-services-enabled>true</other-services-enabled>
+    <auto-save>true</auto-save>
   </component>
   <component name="KubernetesApiPersistence">
     <option name="context" value="aks-aip-dev-001" />
@@ -37,7 +47,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1599977875627</updated>
-      <workItem from="1599977880580" duration="188000" />
+      <workItem from="1599977880580" duration="627000" />
     </task>
     <servers />
   </component>
@@ -48,5 +58,11 @@
   <component name="UnityUnitTestConfiguration" currentTestLauncher="NUnit" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="248" y="428" width="943" height="826" key="find.popup" timestamp="1599978437722">
+      <screen x="0" y="0" width="2560" height="1392" />
+    </state>
+    <state x="248" y="428" width="943" height="826" key="find.popup/0.0.2560.1392/2560.0.2560.1440@0.0.2560.1392" timestamp="1599978437722" />
   </component>
 </project>

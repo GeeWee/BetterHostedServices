@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Project References">
-    <ProjectReference Include="..\..\Source\BetterHostedServices\BetterHostedServices.csproj" />
+    <ProjectReference Include="..\src\BetterHostedServices.csproj" />
   </ItemGroup>
 
 </Project>

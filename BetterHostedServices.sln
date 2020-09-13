@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.28803.352
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{719809C2-A551-4C4A-9EFD-B10FB5E35BC0}"
 	ProjectSection(SolutionItems) = preProject
-		Source\Directory.Build.props = Source\Directory.Build.props
+		src\Directory.Build.props = src\Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F20E2797-D1E3-4321-91BB-FAE54954D2A0}"
@@ -31,8 +31,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Documentation", "Documentat
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E1B24F25-B8A4-46EE-B7EB-7803DCFC543F}"
 	ProjectSection(SolutionItems) = preProject
-		Tests\.editorconfig = Tests\.editorconfig
-		Tests\Directory.Build.props = Tests\Directory.Build.props
+		tests\.editorconfig = tests\.editorconfig
+		tests\Directory.Build.props = tests\Directory.Build.props
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{26F71F5B-2940-4FB0-9681-A76060CBCEF9}"
@@ -57,9 +57,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{0555
 		.github\SECURITY.md = .github\SECURITY.md
 	EndProjectSection
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterHostedServices", "Source\BetterHostedServices\BetterHostedServices.csproj", "{D49F5A02-D549-4EF4-8776-89C35A71EB2D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterHostedServices", "src\BetterHostedServices.csproj", "{D49F5A02-D549-4EF4-8776-89C35A71EB2D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterHostedServices.Test", "Tests\BetterHostedServices.Test\BetterHostedServices.Test.csproj", "{528E66EB-2232-4534-A20D-9BC8A240BF2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BetterHostedServices.Test", "tests\BetterHostedServices.Test.csproj", "{528E66EB-2232-4534-A20D-9BC8A240BF2F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".github", ".github", "{EFE1E5ED-D337-4874-82EC-D9FA0BC7D3AB}"
 	ProjectSection(SolutionItems) = preProject

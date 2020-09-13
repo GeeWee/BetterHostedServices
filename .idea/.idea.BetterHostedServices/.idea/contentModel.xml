@@ -51,9 +51,18 @@
           <e p="workflows" t="Include" />
         </e>
       </e>
-      <e p="Source/BetterHostedServices" t="IncludeRecursive">
+      <e p="Tests/.editorconfig" t="Include" />
+      <e p="Tests/Directory.Build.props" t="Include" />
+      <e p="appveyor.yml" t="Include" />
+      <e p="azure-pipelines.yml" t="Include" />
+      <e p="build.cake" t="Include" />
+      <e p="dotnet-tools.json" t="Include" />
+      <e p="global.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="src" t="IncludeRecursive">
         <e p="BetterHostedServices.csproj" t="IncludeRecursive" />
         <e p="Class1.cs" t="Include" />
+        <e p="Directory.Build.props" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -63,11 +72,11 @@
           </e>
         </e>
       </e>
-      <e p="Source/Directory.Build.props" t="Include" />
-      <e p="Tests/.editorconfig" t="Include" />
-      <e p="Tests/BetterHostedServices.Test" t="IncludeRecursive">
+      <e p="tests" t="IncludeRecursive">
+        <e p=".editorconfig" t="Include" />
         <e p="BetterHostedServices.Test.csproj" t="IncludeRecursive" />
         <e p="Class1Test.cs" t="Include" />
+        <e p="Directory.Build.props" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
@@ -77,15 +86,7 @@
           </e>
         </e>
       </e>
-      <e p="Tests/Directory.Build.props" t="Include" />
-      <e p="appveyor.yml" t="Include" />
-      <e p="azure-pipelines.yml" t="Include" />
-      <e p="build.cake" t="Include" />
-      <e p="dotnet-tools.json" t="Include" />
-      <e p="global.json" t="Include" />
-      <e p="packages" t="ExcludeRecursive" />
-      <e p="src" t="Include" />
-      <e p="tests" t="Include" />
     </e>
+    <e p="$PROJECT_DIR$/../Images/Icon.png" t="Include" />
   </component>
 </project>
