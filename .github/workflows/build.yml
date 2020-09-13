@@ -44,8 +44,8 @@ jobs:
     - name: 'Dotnet Cake Build'
       run: dotnet cake --target=Build
       shell: pwsh
-    - name: 'Dotnet Cake Test'
-      run: dotnet cake --target=Test
+    - name: 'Dotnet Test'
+      run: dotnet test
       shell: pwsh
     - name: 'Dotnet Cake Pack'
       run: dotnet cake --target=Pack
