@@ -1,6 +1,7 @@
 using System;
 using System.Threading;
 using System.Threading.Tasks;
+using BetterHostedServices;
 using Microsoft.Extensions.Hosting;
 
 /// <summary>
@@ -10,6 +11,12 @@ public abstract class CriticalBackgroundService : IHostedService, IDisposable
 {
     private Task _executingTask;
     private readonly CancellationTokenSource _stoppingCts = new CancellationTokenSource();
+    private IApplicationEnder _applicationEnder;
+
+    protected CriticalBackgroundService(IApplicationEnder applicationEnder)
+    {
+        this._applicationEnder = applicationEnder;
+    }
 
     /// <summary>
     /// This method is called when the <see cref="IHostedService"/> starts. The implementation should return a task that represents
@@ -23,7 +30,9 @@ public abstract class CriticalBackgroundService : IHostedService, IDisposable
     {
         Console.Error.WriteLine($"Error happened while executing CriticalBackgroundTask {this.GetType().FullName}. Shutting down.");
         Console.Error.WriteLine(e.ToString());
-        Environment.Exit(3400);
+        Console.WriteLine("ENVIRONMENT EXIT??");
+
+        this._applicationEnder.ShutDownApplication();
     }
 
     /// <summary>
@@ -46,6 +55,7 @@ public abstract class CriticalBackgroundService : IHostedService, IDisposable
         // until the grace period is over.
         this._executingTask.ContinueWith(t =>
         {
+            Console.WriteLine("ERROR???");
             if (t.Exception !=  null)
             {
                 OnError(t.Exception);

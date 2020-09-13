@@ -69,7 +69,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workflows", "workflows", "{
 		.github\workflows\release-drafter.yml = .github\workflows\release-drafter.yml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "aspnettestproject", "aspnettestproject\aspnettestproject.csproj", "{D01F282C-88DC-4142-A794-5B50C43B710E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCoreTestProject", "AspNetCoreTestProject\AspNetCoreTestProject.csproj", "{D01F282C-88DC-4142-A794-5B50C43B710E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
