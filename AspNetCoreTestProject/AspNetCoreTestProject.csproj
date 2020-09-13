@@ -4,4 +4,9 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup Label="Project References">
+    <ProjectReference Include="..\src\BetterHostedServices.csproj" />
+  </ItemGroup>
+  
+
 </Project>

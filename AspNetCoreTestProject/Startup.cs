@@ -10,6 +10,8 @@ using Microsoft.Extensions.Hosting;
 
 namespace AspNetCoreTestProject
 {
+    using DefaultNamespace;
+
     public class Startup
     {
         // This method gets called by the runtime. Use this method to add services to the container.
@@ -17,6 +19,10 @@ namespace AspNetCoreTestProject
         public void ConfigureServices(IServiceCollection services)
         {
             // services.AddHostedService<TestHostedService>();
+
+            services.AddBetterHostedServices();
+            services.AddHostedService<YieldingAndThenCrashingCriticalBackgroundService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
