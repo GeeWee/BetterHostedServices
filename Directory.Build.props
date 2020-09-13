@@ -20,10 +20,10 @@
   </PropertyGroup>
 
   <ItemGroup Label="Package References">
-    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" PrivateAssets="all" Version="3.3.0" />
-    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" PrivateAssets="all" Version="16.7.56" />
+<!--    <PackageReference Include="Microsoft.CodeAnalysis.FxCopAnalyzers" PrivateAssets="all" Version="3.3.0" />-->
+<!--    <PackageReference Include="Microsoft.VisualStudio.Threading.Analyzers" PrivateAssets="all" Version="16.7.56" />-->
     <PackageReference Include="MinVer" PrivateAssets="all" Version="2.3.0" />
-    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" Version="1.1.118" />
+<!--    <PackageReference Include="StyleCop.Analyzers" PrivateAssets="all" Version="1.1.118" />-->
   </ItemGroup>
 
 </Project>
