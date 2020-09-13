@@ -29,7 +29,7 @@ namespace BetterHostedServices.Test
             {
                 builder.ConfigureTestServices(services =>
                 {
-                    services.AddHostedService<CriticalBackgroundServices.ImmediatelyCrashingCriticalBackgroundService>();
+                    services.AddHostedService<ImmediatelyCrashingCriticalBackgroundService>();
                 });
             });
 
@@ -49,7 +49,7 @@ namespace BetterHostedServices.Test
                 builder.ConfigureTestServices(services =>
                 {
                     services.AddTransient<IApplicationEnder>(s => applicationEnder);
-                    services.AddHostedService<CriticalBackgroundServices.YieldingAndThenCrashingCriticalBackgroundService>();
+                    services.AddHostedService<YieldingAndThenCrashingCriticalBackgroundService>();
                 });
             });
 

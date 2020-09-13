@@ -5,8 +5,7 @@ namespace BetterHostedServices.Test.HostedServices
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
 
-    public class CriticalBackgroundServices
-    {
+
         public class ImmediatelyCrashingCriticalBackgroundService: CriticalBackgroundService
         {
             protected override Task ExecuteAsync(CancellationToken stoppingToken) => throw new Exception("Crash right away");
@@ -27,6 +26,6 @@ namespace BetterHostedServices.Test.HostedServices
             public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
             {
             }
-        }
+
     }
 }
