@@ -16,7 +16,7 @@ namespace BetterHostedServices
     {
         private Task _executingTask;
         private readonly CancellationTokenSource _stoppingCts = new CancellationTokenSource();
-        private IApplicationEnder _applicationEnder;
+        protected IApplicationEnder _applicationEnder;
 
         /// <summary>
         /// </summary>
