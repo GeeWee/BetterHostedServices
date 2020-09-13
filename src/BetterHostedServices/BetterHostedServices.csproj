@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Build">
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Label="Package">
+    <Product>Better Hosted Services</Product>
+    <Description>Better Hosted Services</Description>
+    <PackageTags>aspnet;aspnetcore;hostedservices;backgroundservices;</PackageTags>
+  </PropertyGroup>
+
+</Project>

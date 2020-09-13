@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.2/extResources" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.cache/JetBrains/Rider2020.2/resharper-host/local/Transient/Rider/v202/SolutionCaches/_BetterHostedServices.-717922955.00" t="ExcludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/consoles/db" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/extensions" t="IncludeRecursive" />
+    <e p="$APPLICATION_CONFIG_DIR$/scratches" t="IncludeRecursive" />
+    <e p="$USER_HOME$/.nuget/packages/microsoft.net.test.sdk/16.7.1/build/netcoreapp2.1" t="Include">
+      <e p="Microsoft.NET.Test.Sdk.Program.cs" t="Include" />
+    </e>
+    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.LegacyThreadSwitchingMembers.txt" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.MainThreadAssertingMethods.txt" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.MainThreadSwitchingMethods.txt" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/microsoft.visualstudio.threading.analyzers/16.7.56/build/AdditionalFiles/vs-threading.MembersRequiringMainThread.txt" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.reporters.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.utility.netcoreapp10.dll" t="Include" />
+    <e p="$USER_HOME$/.nuget/packages/xunit.runner.visualstudio/2.4.3/build/netcoreapp2.1/xunit.runner.visualstudio.dotnetcore.testadapter.dll" t="Include" />
+    <e p="$PROJECT_DIR$" t="IncludeFlat">
+      <e p=".editorconfig" t="Include" />
+      <e p=".gitattributes" t="Include" />
+      <e p=".github/CODE_OF_CONDUCT.md" t="Include" />
+      <e p=".github/CONTRIBUTING.md" t="Include" />
+      <e p=".github/ISSUE_TEMPLATE/BUG_REPORT.md" t="Include" />
+      <e p=".github/ISSUE_TEMPLATE/FEATURE_REQUEST.md" t="Include" />
+      <e p=".github/ISSUE_TEMPLATE/QUESTION.md" t="Include" />
+      <e p=".github/PULL_REQUEST_TEMPLATE.md" t="Include" />
+      <e p=".github/SECURITY.md" t="Include" />
+      <e p=".github/release-drafter.yml" t="Include" />
+      <e p=".github/workflows/build.yml" t="Include" />
+      <e p=".github/workflows/release-drafter.yml" t="Include" />
+      <e p=".gitignore" t="Include" />
+      <e p="BetterHostedServices.sln" t="IncludeFlat" />
+      <e p="Directory.Build.props" t="Include" />
+      <e p="Directory.Build.targets" t="Include" />
+      <e p="Documentation" t="Include">
+        <e p=".github" t="Include">
+          <e p="Issue Templates" t="Include" />
+        </e>
+      </e>
+      <e p="Images" t="Include">
+        <e p="Banner.png" t="Include" />
+        <e p="Hero.png" t="Include" />
+        <e p="Icon.png" t="Include" />
+      </e>
+      <e p="Key.snk" t="Include" />
+      <e p="LICENSE.md" t="Include" />
+      <e p="README.md" t="Include" />
+      <e p="Solution Items" t="Include">
+        <e p=".github" t="Include">
+          <e p="workflows" t="Include" />
+        </e>
+      </e>
+      <e p="Source/BetterHostedServices" t="IncludeRecursive">
+        <e p="BetterHostedServices.csproj" t="IncludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.0" t="Include">
+              <e p="BetterHostedServices.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Source/Directory.Build.props" t="Include" />
+      <e p="Tests/.editorconfig" t="Include" />
+      <e p="Tests/BetterHostedServices.Test" t="IncludeRecursive">
+        <e p="BetterHostedServices.Test.csproj" t="IncludeRecursive" />
+        <e p="Class1Test.cs" t="Include" />
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="BetterHostedServices.Test.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Tests/Directory.Build.props" t="Include" />
+      <e p="appveyor.yml" t="Include" />
+      <e p="azure-pipelines.yml" t="Include" />
+      <e p="build.cake" t="Include" />
+      <e p="dotnet-tools.json" t="Include" />
+      <e p="global.json" t="Include" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="src" t="Include" />
+      <e p="tests" t="Include" />
+    </e>
+  </component>
+</project>
