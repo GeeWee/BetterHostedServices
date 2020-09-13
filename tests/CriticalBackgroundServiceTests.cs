@@ -40,7 +40,7 @@ namespace BetterHostedServices.Test
         }
 
         [Fact]
-        public void WhenCriticalBackgroundService_YieldsBeforeThrowingError_ApplicationShouldWork()
+        public async Task WhenCriticalBackgroundService_YieldsBeforeThrowingError_ApplicationShouldCrash()
         {
             var applicationEnder = new ApplicationEnderMock();
 
@@ -54,9 +54,12 @@ namespace BetterHostedServices.Test
             });
 
             var client = factory.CreateClient();
+            var res = await client.GetAsync("/");
 
             // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
             applicationEnder.ShutDownRequested.Should().BeTrue();
+
+
         }
     }
 }
