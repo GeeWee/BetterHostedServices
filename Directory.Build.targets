@@ -8,7 +8,7 @@
            and tag your repository with the name of the package followed by the semantic version e.g.
            'PackageName-1.0.0'. -->
       <!--<MinVerTagPrefix>$(PackageId)-</MinVerTagPrefix>-->
-      <MinVerVerbosity>normal</MinVerVerbosity>
+      <MinVerVerbosity>detailed</MinVerVerbosity>
     </PropertyGroup>
   </Target>
 

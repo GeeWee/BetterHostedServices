@@ -9,7 +9,6 @@
   <PropertyGroup Label="Package">
     <Authors>GeeWee</Authors>
     <Company>ScadaMinds</Company>
-    <PackageId>BetterHostedServices</PackageId>
     <Copyright>Copyright © Gustav Wengel. All rights Reserved</Copyright>
     <PackageDescription>
       Fixed a wide variety of issues that have to do with Hosted Services and BackgroundServices, such as error handling and the abillity
