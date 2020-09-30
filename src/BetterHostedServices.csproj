@@ -6,8 +6,22 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
+    <PackageId>BetterHostedServices</PackageId>
+
     <Product>Better Hosted Services</Product>
+    <Title>Better Hosted Services</Title>
+
     <Description>Better Hosted Services</Description>
+    <Authors>GeeWee</Authors>
+    <Company>SCADAMinds</Company>
+    <PackageTags>ASP.Net Core;Spring Boot Admin;SBA</PackageTags>
+    <PackageDescription>
+      Fixed a wide variety of issues that have to do with Hosted Services and BackgroundServices, such as error handling and the abillity
+      to access them via the DI.
+    </PackageDescription>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <RepositoryUrl>https://github.com/GeeWee/BetterHostedServices</RepositoryUrl>
+
     <PackageTags>aspnet;aspnetcore;hostedservices;backgroundservices;</PackageTags>
   </PropertyGroup>
 
