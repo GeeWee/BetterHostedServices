@@ -7,16 +7,21 @@
   </PropertyGroup>
 
   <PropertyGroup Label="Package">
-    <Authors>Gustav Wengel</Authors>
-    <Company>Gustav Wengel</Company>
+    <Authors>GeeWee</Authors>
+    <Company>ScadaMinds</Company>
     <Copyright>Copyright © Gustav Wengel. All rights Reserved</Copyright>
-    <PackageRequireLicenseAcceptance>true</PackageRequireLicenseAcceptance>
+    <PackageDescription>
+      Fixed a wide variety of issues that have to do with Hosted Services and BackgroundServices, such as error handling and the abillity
+      to access them via the DI.
+    </PackageDescription>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/geewee/BetterHostedServices</PackageProjectUrl>
     <PackageIcon>Icon.png</PackageIcon>
     <RepositoryUrl>https://github.com/geewee/BetterHostedServices.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageReleaseNotes>https://github.com/geewee/BetterHostedServices/releases</PackageReleaseNotes>
+    <PackageTags>aspnet;aspnetcore;hostedservices;backgroundservices;</PackageTags>
+
   </PropertyGroup>
 
   <ItemGroup Label="Package References">
