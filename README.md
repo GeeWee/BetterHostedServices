@@ -29,7 +29,7 @@ However BackgroundServices fails silently if an uncaught error occurs.
 
 This example will not throw an error, but simply fail silently.
 ```csharp
-public class YieldingAndThenCrashingCriticalBackgroundService: CriticalBackgroundService
+public class YieldingAndThenCrashingCriticalBackgroundService: BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -57,7 +57,7 @@ You can use it like this:
 Inherit from the CriticalBackgroundService
 
 ```csharp
-public class YieldingAndThenCrashingBackgroundService: BackgroundService
+public class YieldingAndThenCrashingBackgroundService: CriticalBackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
