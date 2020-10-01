@@ -11,8 +11,7 @@
     <Company>ScadaMinds</Company>
     <Copyright>Copyright © Gustav Wengel. All rights Reserved</Copyright>
     <PackageDescription>
-      Fixed a wide variety of issues that have to do with Hosted Services and BackgroundServices, such as error handling and the abillity to access them via the DI.
-      See more at https://github.com/GeeWee/BetterHostedServices
+      Fixed a wide variety of issues that have to do with Hosted Services and BackgroundServices, such as error handling and the abillity to access them via the DI.  See more at https://github.com/GeeWee/BetterHostedServices
     </PackageDescription>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
     <PackageProjectUrl>https://github.com/geewee/BetterHostedServices</PackageProjectUrl>
