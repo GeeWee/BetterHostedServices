@@ -3,6 +3,7 @@
 [![GitHub Actions Build History](https://buildstats.info/github/chart/geewee/BetterHostedServices?branch=main&includeBuildsFromPullRequest=false)](https://github.com/geewee/BetterHostedServices/actions)
 
 This projects is out to solve some limitations with ASP.NET Core's `IHostedService` and `BackgroundService`.
+The project also works with console applications using a [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host).
 
 ### Problem 1. IHostedService is not good for long running tasks.
 Creating an `IHostedService` with a long-running task, will delay application startup.
