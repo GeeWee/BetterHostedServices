@@ -1,7 +1,9 @@
 namespace BetterHostedServices
 {
+    using System;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
     /// <summary>
     /// Extensions on IServiceCollection
@@ -48,6 +50,32 @@ namespace BetterHostedServices
             services.AddSingleton<TService>();
             services.AddHostedService<HostedServiceWrapper<TService>>();
         }
+
+        /// <summary>
+        /// Add a periodic task
+        /// TODO
+        /// </summary>
+        /// <param name="services"></param>
+        /// <param name="failureMode"></param>
+        /// <param name="timeBetweenTasks"></param>
+        /// <typeparam name="TPeriodicTask"></typeparam>
+        public static void AddPeriodicTask<TPeriodicTask>(this IServiceCollection services, PeriodicTaskFailureMode failureMode, TimeSpan timeBetweenTasks)
+            where TPeriodicTask : class, IPeriodicTask
+        {
+            services.AddTransient<TPeriodicTask>();
+
+            services.AddHostedService<PeriodicTaskRunnerBackgroundService<TPeriodicTask>>((services) =>
+            {
+                return new PeriodicTaskRunnerBackgroundService<TPeriodicTask>(
+                    applicationEnder: services.GetRequiredService<IApplicationEnder>(),
+                    logger: services.GetRequiredService<ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>>>(),
+                    serviceProvider: services.GetRequiredService<IServiceProvider>(),
+                    periodicTaskFailureMode: failureMode,
+                    timeBetweenTasks: timeBetweenTasks
+                );
+            });
+        }
+
 
 
     }
