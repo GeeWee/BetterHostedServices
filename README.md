@@ -3,6 +3,7 @@
 [![GitHub Actions Build History](https://buildstats.info/github/chart/geewee/BetterHostedServices?branch=main&includeBuildsFromPullRequest=false)](https://github.com/geewee/BetterHostedServices/actions)
 
 This projects is out to solve some limitations with ASP.NET Core's `IHostedService` and `BackgroundService`.
+The project also works with console applications using a [.NET Generic Host](https://docs.microsoft.com/en-us/dotnet/core/extensions/generic-host).
 
 ### Problem 1. IHostedService is not good for long running tasks.
 Creating an `IHostedService` with a long-running task, will delay application startup.
@@ -110,3 +111,11 @@ method on the `IServiceCollection`
 services.AddHostedServiceAsSingleton<ISomeBackgroundService, SomeBackgroundService>();
 ```
 After that, you can inject them via the DI container just like any ordinary singleton.
+
+## RunPeriodicTasks
+If you simply want your BackgroundService to run a periodic tasks, there's some boilerplate you generally have to deal with.
+Best-practices for using BackgroundServices to run periodic tasks are [documented here](https://www.gustavwengel.dk/testing-and-scope-management-aspnetcore-backgroundservices) - but you can also use this library.
+
+```csharp
+services.
+```

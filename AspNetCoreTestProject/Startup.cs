@@ -38,6 +38,14 @@ namespace AspNetCoreTestProject
             // services.AddHostedService<YieldingAndThenCrashingBackgroundService>(); // This will not crash the application
             // services.AddHostedService<ImmediatelyCrashingCriticalBackgroundService>(); // Crash
             // services.AddHostedService<YieldingAndThenCrashingCriticalBackgroundService>(); // Crash
+
+            services.AddTransient<TransientStateHolder>();
+            services.AddSingleton<SingletonStateHolder>();
+            services.AddScoped<ScopeStateHolder>();
+            // TODO ensure that service is registered
+
+            // services.AddPeriodicTask<PrintingPeriodicTask>(PeriodicTaskFailureMode.CRASH_APPLICATION, TimeSpan.FromSeconds(1));
+            services.AddPeriodicTask<CountingPeriodicTask>(PeriodicTaskFailureMode.CrashApplication, TimeSpan.FromSeconds(5));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
