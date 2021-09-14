@@ -7,7 +7,7 @@ namespace BetterHostedServices
     using Microsoft.Extensions.Logging;
 
     /// <summary>
-    ///
+    /// The service that runs a periodic task.
     /// </summary>
     /// <typeparam name="TPeriodicTask"></typeparam>
     public class PeriodicTaskRunnerBackgroundService<TPeriodicTask> : CriticalBackgroundService

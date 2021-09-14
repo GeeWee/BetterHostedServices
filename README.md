@@ -116,6 +116,24 @@ After that, you can inject them via the DI container just like any ordinary sing
 If you simply want your BackgroundService to run a periodic tasks, there's some boilerplate you generally have to deal with.
 Best-practices for using BackgroundServices to run periodic tasks are [documented here](https://www.gustavwengel.dk/testing-and-scope-management-aspnetcore-backgroundservices) - but you can also use this library.
 
+If you want to run a periodic task, implement the `IPeriodicTask` interface, and use the `IServiceCollection.AddPeriodicTask` method, like below.
+
 ```csharp
-services.
+public class MyPeriodicTask: IPeriodicTask
+    {
+        public async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            // Do some businesss logic
+        }
+    }
 ```
+
+```charp
+# In ConfigureServices
+services.AddPeriodicTask<MyPeriodicTask>(failureMode: PeriodicTaskFailureMode.CrashApplication, timeBetweenTasks: TimeSpan.FromSeconds(5));
+```
+You can determine two different Failure Modes:
+- `PeriodicTaskFailureMode.CrashApplication` : If this is set and the task throws an uncaught exception, the exception will bubble up and crash the application. This is similar to how an uncaught exception inside a `CriticalBackgroundService` works. Use this if you do not expect your tasks to fail, and it would be unwise to continue if one did.
+- `PeriodicTaskFailureMode.RetryLater` : If you expect that tasks might fail occasionally, and that retrying is safe, use this method. It will log the error and run a new task after `timeBetweenTasks` has elapsed.
+
+The parameter `timeBetweenTasks` is how long until after the completion of the previous task, the next one should start. The clock will not start ticking until the previous task has completed so there is no risk of tasks overlapping in time.

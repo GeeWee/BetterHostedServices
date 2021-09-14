@@ -52,13 +52,13 @@ namespace BetterHostedServices
         }
 
         /// <summary>
-        /// Add a periodic task
-        /// TODO
+        /// Add a periodic task.
+        /// The task is recreated with a new scope for each invocation.
         /// </summary>
-        /// <param name="services"></param>
-        /// <param name="failureMode"></param>
-        /// <param name="timeBetweenTasks"></param>
-        /// <typeparam name="TPeriodicTask"></typeparam>
+        /// <param name="services">The ServiceCollection</param>
+        /// <param name="failureMode">Determines how the service behaves when a task fails.</param>
+        /// <param name="timeBetweenTasks">How long after the completion of the previous task, should the next task run?</param>
+        /// <typeparam name="TPeriodicTask">The periodic task to run</typeparam>
         public static void AddPeriodicTask<TPeriodicTask>(this IServiceCollection services, PeriodicTaskFailureMode failureMode, TimeSpan timeBetweenTasks)
             where TPeriodicTask : class, IPeriodicTask
         {

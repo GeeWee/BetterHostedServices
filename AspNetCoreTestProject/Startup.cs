@@ -45,7 +45,7 @@ namespace AspNetCoreTestProject
             // TODO ensure that service is registered
 
             // services.AddPeriodicTask<PrintingPeriodicTask>(PeriodicTaskFailureMode.CRASH_APPLICATION, TimeSpan.FromSeconds(1));
-            services.AddPeriodicTask<CountingPeriodicTask>(PeriodicTaskFailureMode.CrashApplication, TimeSpan.FromSeconds(5));
+            services.AddPeriodicTask<CountingPeriodicTask>(failureMode: PeriodicTaskFailureMode.CrashApplication, timeBetweenTasks: TimeSpan.FromSeconds(5));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
