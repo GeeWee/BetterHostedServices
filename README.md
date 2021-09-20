@@ -13,7 +13,7 @@ dotnet add package BetterHostedServices
 
 And then call `services.AddBetterHostedServices()` inside your `Startup.cs`'s `ConfigureServices`
 
-### BackgroundService, Error handling and CriticalBackgroundService 
+## BackgroundService, Error handling and CriticalBackgroundService 
 Microsoft recommends extending from `BackgroundService` for long running tasks.
 However BackgroundServices [fails silently if an uncaught error is thrown](https://www.gustavwengel.dk/difference-and-error-handling-between-hostedservice-and-backgroundservice).
 
