@@ -13,7 +13,7 @@ dotnet add package BetterHostedServices
 
 And then call `services.AddBetterHostedServices()` inside your `Startup.cs`'s `ConfigureServices`
 
-### Better Error Handling in BackgroundService
+### BackgroundService, Error handling and CriticalBackgroundService 
 Microsoft recommends extending from `BackgroundService` for long running tasks.
 However BackgroundServices [fails silently if an uncaught error is thrown](https://www.gustavwengel.dk/difference-and-error-handling-between-hostedservice-and-backgroundservice).
 
@@ -30,8 +30,7 @@ public class YieldingAndThenCrashingCriticalBackgroundService: BackgroundService
 ```
 We can do better.
 
-## CriticalBackgroundService
-With `BetterHostedServices` you can inherit from `CriticalBackgroundService` instead of the regular `BackgroundService`.
+Using `BetterHostedServices` you can inherit from `CriticalBackgroundService` instead of the regular `BackgroundService`.
 
 If an uncaught error happens in a `CriticalBackgroundService` it will be logged, and it will crash the application.
 
