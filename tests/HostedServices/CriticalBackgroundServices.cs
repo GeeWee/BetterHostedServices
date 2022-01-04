@@ -4,13 +4,14 @@ namespace BetterHostedServices.Test.HostedServices
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
 
 
-        public class ImmediatelyCrashingCriticalBackgroundService: CriticalBackgroundService
+    public class ImmediatelyCrashingCriticalBackgroundService: CriticalBackgroundService
         {
             protected override Task ExecuteAsync(CancellationToken stoppingToken) => throw new Exception("Crash right away");
 
-            public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
+            public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime, ILogger<ImmediatelyCrashingCriticalBackgroundService> criticalLogger) : base(lifeTime, criticalLogger)
             {
             }
         }
@@ -23,7 +24,7 @@ namespace BetterHostedServices.Test.HostedServices
                 throw new Exception("Crash after yielding");
             }
 
-            public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
+            public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime, ILogger<ImmediatelyCrashingCriticalBackgroundService> criticalLogger) : base(lifeTime, criticalLogger)
             {
             }
 
