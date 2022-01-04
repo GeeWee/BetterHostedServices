@@ -45,7 +45,7 @@ public class YieldingAndThenCrashingBackgroundService: CriticalBackgroundService
         throw new Exception("Oh no something really bad happened");
     }
     
-    public YieldingAndThenCrashingBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder) { }
+    public YieldingAndThenCrashingBackgroundService(IApplicationEnder applicationEnder, ILogger<YieldingAndThenCrashingBackgroundService> logger) : base(applicationEnder, logger) { }
 }
 ```
 And then you can use it like any other IHostedService. E.g. inside `ConfigureServices` you add the following:
@@ -76,7 +76,7 @@ public class YieldingAndThenCrashingCriticalBackgroundService : CriticalBackgrou
         this._applicationEnder.ShutDownApplication(); // or simply call base.OnError
     }
 
-    public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+    public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder, ILogger<YieldingAndThenCrashingCriticalBackgroundService> logger) : base(applicationEnder, logger)
     {
     }
 }

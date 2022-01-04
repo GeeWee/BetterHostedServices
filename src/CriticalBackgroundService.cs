@@ -47,6 +47,7 @@ namespace BetterHostedServices
         /// <param name="exceptionFromExecuteAsync"></param>
         protected virtual void OnError(Exception exceptionFromExecuteAsync)
         {
+            Console.Error.WriteLine($"Error happened while executing CriticalBackgroundTask {this.GetType().FullName}. Shutting down.");
             this._logger.LogError(exceptionFromExecuteAsync, $"Error happened while executing CriticalBackgroundTask {this.GetType().FullName}. Shutting down.");
 
             this._applicationEnder.ShutDownApplication();
