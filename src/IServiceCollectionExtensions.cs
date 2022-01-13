@@ -66,9 +66,12 @@ namespace BetterHostedServices
 
             services.AddHostedService<PeriodicTaskRunnerBackgroundService<TPeriodicTask>>((services) =>
             {
+                var logger = services.GetRequiredService<ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>>>();
+
                 return new PeriodicTaskRunnerBackgroundService<TPeriodicTask>(
                     applicationEnder: services.GetRequiredService<IApplicationEnder>(),
-                    logger: services.GetRequiredService<ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>>>(),
+                    logger: logger,
+                    criticalLogger: logger,
                     serviceProvider: services.GetRequiredService<IServiceProvider>(),
                     periodicTaskFailureMode: failureMode,
                     timeBetweenTasks: timeBetweenTasks

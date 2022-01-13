@@ -24,15 +24,17 @@ namespace BetterHostedServices
         /// </summary>
         /// <param name="applicationEnder"></param>
         /// <param name="logger"></param>
+        /// <param name="criticalLogger"></param>
         /// <param name="serviceProvider"></param>
         /// <param name="periodicTaskFailureMode"></param>
         /// <param name="timeBetweenTasks"></param>
         public PeriodicTaskRunnerBackgroundService(
             IApplicationEnder applicationEnder,
             ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>> logger,
+            ILogger<CriticalBackgroundService> criticalLogger, 
             IServiceProvider serviceProvider,
             PeriodicTaskFailureMode periodicTaskFailureMode,
-            TimeSpan timeBetweenTasks) : base(applicationEnder)
+            TimeSpan timeBetweenTasks) : base(applicationEnder, criticalLogger)
         {
             this.logger = logger;
             this.serviceProvider = serviceProvider;
