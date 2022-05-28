@@ -63,7 +63,7 @@ namespace BetterHostedServices
                 }
                 catch (Exception e)
                 {
-                    this.logger.LogError(e, $"Exception while processing message in {typeof(TPeriodicTask)}");
+                    this.logger.LogError(e, "Exception while processing message in {Type}", typeof(TPeriodicTask));
                     // If failure mode is set to end application, go through the normal OnError flow that crashes the application.
                     if (this.periodicTaskFailureMode == PeriodicTaskFailureMode.CrashApplication)
                     {
@@ -72,7 +72,7 @@ namespace BetterHostedServices
 
                     if (this.periodicTaskFailureMode == PeriodicTaskFailureMode.RetryLater)
                     {
-                        this.logger.LogWarning(e, $"Exception while processing message in {typeof(TPeriodicTask)}. Retrying in {this.timeBetweenTasks}");
+                        this.logger.LogWarning(e, "Exception while processing message in {Type}. Retrying in {TasksDelay}", typeof(TPeriodicTask), this.timeBetweenTasks);
                     }
                 }
 
