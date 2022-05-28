@@ -14,7 +14,7 @@ namespace BetterHostedServices
         where TPeriodicTask : IPeriodicTask
     {
         private readonly ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>> logger;
-        private readonly IServiceProvider serviceProvider;
+        private readonly IPeriodicTaskFactory<TPeriodicTask> taskFactory;
 
         private readonly PeriodicTaskFailureMode periodicTaskFailureMode;
         private readonly TimeSpan timeBetweenTasks;
@@ -24,18 +24,18 @@ namespace BetterHostedServices
         /// </summary>
         /// <param name="applicationEnder"></param>
         /// <param name="logger"></param>
-        /// <param name="serviceProvider"></param>
+        /// <param name="taskFactory"></param>
         /// <param name="periodicTaskFailureMode"></param>
         /// <param name="timeBetweenTasks"></param>
         public PeriodicTaskRunnerBackgroundService(
             IApplicationEnder applicationEnder,
             ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>> logger,
-            IServiceProvider serviceProvider,
+            IPeriodicTaskFactory<TPeriodicTask> taskFactory,
             PeriodicTaskFailureMode periodicTaskFailureMode,
             TimeSpan timeBetweenTasks) : base(applicationEnder)
         {
             this.logger = logger;
-            this.serviceProvider = serviceProvider;
+            this.taskFactory = taskFactory;
             this.periodicTaskFailureMode = periodicTaskFailureMode;
             this.timeBetweenTasks = timeBetweenTasks;
         }
@@ -48,17 +48,17 @@ namespace BetterHostedServices
         {
             // Ensure that we can crate the service. Do this synchronously so that we'll fail-fast no matter the failure mode
             // if the task can't run at all.
-            using (var scope = this.serviceProvider.CreateScope())
+            if(!this.taskFactory.CanResolvePeriodicTask())
             {
-                _ = scope.ServiceProvider.GetRequiredService<TPeriodicTask>();
+                this.logger.LogCritical("{Type} didn't registered in container", typeof(TPeriodicTask));
+                throw new InvalidOperationException($"{typeof(TPeriodicTask)} didn't registered in container");
             }
 
             while (!stoppingToken.IsCancellationRequested)
             {
                 try
                 {
-                    using var scope = this.serviceProvider.CreateScope();
-                    var periodicTask = scope.ServiceProvider.GetRequiredService<TPeriodicTask>();
+                    var periodicTask = this.taskFactory.GetPeriodicTask();
                     await periodicTask.ExecuteAsync(stoppingToken);
                 }
                 catch (Exception e)

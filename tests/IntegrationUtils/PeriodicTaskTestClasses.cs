@@ -26,6 +26,11 @@ namespace BetterHostedServices.Test.IntegrationUtils
         }
     }
 
+    public class TestPeriodicTask : IPeriodicTask
+    {
+        public Task ExecuteAsync(CancellationToken stoppingToken) => Task.CompletedTask;
+    }
+
     public class SingletonStateHolder
     {
         public int Count { get; set; }

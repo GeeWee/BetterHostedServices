@@ -55,13 +55,28 @@ namespace BetterHostedServices
         /// <typeparam name="TPeriodicTask">The periodic task to run</typeparam>
         public static IServiceCollection AddPeriodicTask<TPeriodicTask>(this IServiceCollection services, PeriodicTaskFailureMode failureMode, TimeSpan timeBetweenTasks)
             where TPeriodicTask : class, IPeriodicTask
-            => services.AddTransient<TPeriodicTask>()
+            => services.AddPeriodicTask<TPeriodicTask, PeriodicTaskFactory<TPeriodicTask>>(failureMode, timeBetweenTasks);
 
+        /// <summary>
+        /// Add a periodic task.
+        /// The task is recreated with a new scope for each invocation.
+        /// </summary>
+        /// <typeparam name="TPeriodicTask">The periodic task to run</typeparam>
+        /// <typeparam name="TPeriodicTaskFactory">The factory to create a periodic task</typeparam>
+        /// <param name="services">The ServiceCollection</param>
+        /// <param name="failureMode">Determines how the service behaves when a task fails.</param>
+        /// <param name="timeBetweenTasks">How long after the completion of the previous task, should the next task run?</param>
+        /// <returns></returns>
+        public static IServiceCollection AddPeriodicTask<TPeriodicTask, TPeriodicTaskFactory>(this IServiceCollection services, PeriodicTaskFailureMode failureMode, TimeSpan timeBetweenTasks)
+            where TPeriodicTask : class, IPeriodicTask
+            where TPeriodicTaskFactory : class, IPeriodicTaskFactory<TPeriodicTask>
+            => services.AddTransient<TPeriodicTask>()
+                    .AddSingleton<IPeriodicTaskFactory<TPeriodicTask>, TPeriodicTaskFactory>()
                     .AddHostedService((services) =>
                         new PeriodicTaskRunnerBackgroundService<TPeriodicTask>(
                             applicationEnder: services.GetRequiredService<IApplicationEnder>(),
                             logger: services.GetRequiredService<ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>>>(),
-                            serviceProvider: services.GetRequiredService<IServiceProvider>(),
+                            taskFactory: services.GetRequiredService<IPeriodicTaskFactory<TPeriodicTask>>(),
                             periodicTaskFailureMode: failureMode,
                             timeBetweenTasks: timeBetweenTasks
                     ));
