@@ -79,5 +79,14 @@ namespace BetterHostedServices
                 await Task.Delay(this.timeBetweenTasks, stoppingToken);
             }
         }
+        /// <inheritdoc/>
+        protected override void OnError(Exception exceptionFromExecuteAsync)
+        {
+            this.logger.LogCritical(exceptionFromExecuteAsync,
+                                    "Error happened while executing CriticalBackgroundTask {Type}. Shutting down.\nMessage: {Message}",
+                                    this.GetType().FullName,
+                                    exceptionFromExecuteAsync.Message);
+            this._applicationEnder.ShutDownApplication();
+        }
     }
 }
