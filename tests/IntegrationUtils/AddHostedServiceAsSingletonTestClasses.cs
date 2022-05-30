@@ -1,5 +1,6 @@
 namespace BetterHostedServices.Test.IntegrationUtils
 {
+    using System;
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
@@ -21,6 +22,8 @@ namespace BetterHostedServices.Test.IntegrationUtils
             this.Activated = true;
             return Task.CompletedTask;
         }
+
+        protected override void OnError(Exception exceptionFromExecuteAsync) { }
 
         public bool Activated { get; internal set; } = false;
     }
