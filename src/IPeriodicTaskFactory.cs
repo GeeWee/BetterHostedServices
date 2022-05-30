@@ -12,15 +12,15 @@ namespace BetterHostedServices
     public interface IPeriodicTaskFactory<TPeriodicTask> where TPeriodicTask : IPeriodicTask
     {
         /// <summary>
-        /// Require a <see cref="TPeriodicTask"/>
+        /// Require a task
         /// </summary>
-        /// <returns><see cref="TPeriodicTask"/> instance</returns>
+        /// <returns>A task instance</returns>
         TPeriodicTask GetPeriodicTask();
 
         /// <summary>
-        /// Try to get <see cref="TPeriodicTask"/> from container
+        /// Try to get a task from container
         /// </summary>
-        /// <returns>Value, indicates existing of <see cref="TPeriodicTask"/> in container</returns>
+        /// <returns>Value, indicates existing of a task in container</returns>
         bool CanResolvePeriodicTask();
     }
 
