@@ -23,7 +23,7 @@ namespace BetterHostedServices.Test
             // Arrange
             var applicationEnder = new ApplicationEnderMock();
 
-            var factory = this._factory.WithWebHostBuilder(builder =>
+            using var factory = this._factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureTestServices(services =>
                 {
@@ -32,7 +32,7 @@ namespace BetterHostedServices.Test
                 });
             });
 
-            var client = factory.CreateClient();
+            using var client = factory.CreateClient();
             // Act & assert - we should crash here at some point
 
             // Task is hella flaky because it depends on the internals of the IHostedService - try yielding a bunch of times
@@ -64,7 +64,7 @@ namespace BetterHostedServices.Test
                 });
             });
 
-            var client = factory.CreateClient();
+            using var client = factory.CreateClient();
             // Act & assert - we crash here after each invocation, but we truck on. The stateHolder should keep being incremented
 
             // Task is hella flaky because it depends on the internals of the IHostedService - try yielding a bunch of times
@@ -75,7 +75,7 @@ namespace BetterHostedServices.Test
                 await Task.Yield();
             }
 
-            stateHolder.Count.Should().BeGreaterThan(1);
+            stateHolder.Count.Should().BeGreaterThan(2);
 
             // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
             applicationEnder.ShutDownRequested.Should().BeFalse();
