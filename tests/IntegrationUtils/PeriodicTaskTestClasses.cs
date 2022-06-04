@@ -19,7 +19,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
 
         public IncrementingThenCrashingPeriodicTask(SingletonStateHolder singletonStateHolder) => this.singletonStateHolder = singletonStateHolder;
 
-        public async Task ExecuteAsync(CancellationToken stoppingToken)
+        public Task ExecuteAsync(CancellationToken stoppingToken)
         {
             this.singletonStateHolder.Count += 1;
             throw new Exception("oh no");
