@@ -71,11 +71,11 @@ namespace BetterHostedServices.Test
             // to hope that it's done requesting application shutdown at this point
             for (int i = 0; i < 10; i++)
             {
-                await Task.Delay(100); // 1s ms all in all
+                await Task.Delay(200); // 1s ms all in all
                 await Task.Yield();
             }
 
-            stateHolder.Count.Should().BeGreaterThan(5);
+            stateHolder.Count.Should().BeGreaterThan(1);
 
             // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
             applicationEnder.ShutDownRequested.Should().BeFalse();
