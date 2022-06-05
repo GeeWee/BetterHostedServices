@@ -6,6 +6,7 @@ namespace BetterHostedServices.Test
     using IntegrationUtils;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Logging;
     using Xunit;
 
     public class PeriodicTasksTest
@@ -54,7 +55,7 @@ namespace BetterHostedServices.Test
             var applicationEnder = new ApplicationEnderMock();
             var stateHolder = new SingletonStateHolder();
 
-            var factory = this._factory.WithWebHostBuilder(builder =>
+            using var factory = this._factory.WithWebHostBuilder(builder =>
             {
                 builder.ConfigureTestServices(services =>
                 {
@@ -79,6 +80,10 @@ namespace BetterHostedServices.Test
 
             // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
             applicationEnder.ShutDownRequested.Should().BeFalse();
+
+            factory.Services.GetRequiredService<ILogger<PeriodicTasksTest>>()
+                .LogInformation("Count: {Count}, should be greater than 2\nShut down requested: {Shutdown} should be False",
+                stateHolder.Count, applicationEnder.ShutDownRequested);
         }
     }
 }
