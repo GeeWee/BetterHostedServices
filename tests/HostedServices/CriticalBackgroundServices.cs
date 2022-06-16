@@ -9,10 +9,6 @@ namespace BetterHostedServices.Test.HostedServices
     public class ImmediatelyCrashingCriticalBackgroundService : CriticalBackgroundService
     {
         protected override Task ExecuteAsync(CancellationToken stoppingToken) => throw new Exception("Crash right away");
-        protected override void OnError(Exception exceptionFromExecuteAsync)
-        {
-            this._applicationEnder.ShutDownApplication();
-        }
 
         public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime, NullLogger<ImmediatelyCrashingCriticalBackgroundService>.Instance)
         {
@@ -25,11 +21,6 @@ namespace BetterHostedServices.Test.HostedServices
         {
             await Task.Yield(); // Hand over control explicitly, to ensure this behaviour also works
             throw new Exception("Crash after yielding");
-        }
-
-        protected override void OnError(Exception exceptionFromExecuteAsync)
-        {
-            this._applicationEnder.ShutDownApplication();
         }
 
         public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime, NullLogger<YieldingAndThenCrashingCriticalBackgroundService>.Instance)

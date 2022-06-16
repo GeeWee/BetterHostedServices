@@ -45,7 +45,14 @@ namespace BetterHostedServices
         /// but you can override it, if you want to handle it differently, or do some extra logging.
         /// </summary>
         /// <param name="exceptionFromExecuteAsync"></param>
-        protected abstract void OnError(Exception exceptionFromExecuteAsync);
+        protected virtual void OnError(Exception exceptionFromExecuteAsync)
+        {
+            this.logger.LogCritical(exceptionFromExecuteAsync,
+                                    "Error happened while executing CriticalBackgroundTask {Type}. Shutting down.\nMessage: {Message}",
+                                    this.GetType().FullName,
+                                    exceptionFromExecuteAsync.Message);
+            this._applicationEnder.ShutDownApplication();
+        }
 
         /// <summary>
         /// Triggered when the application host is ready to start the service.

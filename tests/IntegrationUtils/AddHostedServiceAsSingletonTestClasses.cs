@@ -23,7 +23,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
             return Task.CompletedTask;
         }
 
-        protected override void OnError(Exception exceptionFromExecuteAsync) { }
+        //protected override void OnError(Exception exceptionFromExecuteAsync) { }
 
         public bool Activated { get; internal set; } = false;
     }

@@ -48,7 +48,7 @@ namespace BetterHostedServices
         {
             // Ensure that we can crate the service. Do this synchronously so that we'll fail-fast no matter the failure mode
             // if the task can't run at all.
-            if(!this.taskFactory.CanResolvePeriodicTask())
+            if (!this.taskFactory.CanResolvePeriodicTask())
             {
                 this.logger.LogCritical("{Type} didn't registered in container", typeof(TPeriodicTask));
                 throw new InvalidOperationException($"{typeof(TPeriodicTask)} didn't registered in container");
@@ -78,15 +78,6 @@ namespace BetterHostedServices
 
                 await Task.Delay(this.timeBetweenTasks, stoppingToken);
             }
-        }
-        /// <inheritdoc/>
-        protected override void OnError(Exception exceptionFromExecuteAsync)
-        {
-            this.logger.LogCritical(exceptionFromExecuteAsync,
-                                    "Error happened while executing CriticalBackgroundTask {Type}. Shutting down.\nMessage: {Message}",
-                                    this.GetType().FullName,
-                                    exceptionFromExecuteAsync.Message);
-            this._applicationEnder.ShutDownApplication();
         }
     }
 }
