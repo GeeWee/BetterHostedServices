@@ -1,6 +1,7 @@
 namespace BetterHostedServices.Test
 {
     using System;
+    using System.Threading;
     using System.Threading.Tasks;
     using BetterHostedServices;
     using FluentAssertions;
@@ -42,32 +43,13 @@ namespace BetterHostedServices.Test
         [Fact]
         public async Task WhenCriticalBackgroundService_YieldsBeforeThrowingError_ApplicationShouldCrash()
         {
-            var applicationEnder = new ApplicationEnderMock();
+            var applicationEnder = new ApplicationEnderTaskMock();
 
-            var factory = this._factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
-                {
-                    services.AddTransient<IApplicationEnder>(s => applicationEnder);
-                    services.AddHostedService<YieldingAndThenCrashingCriticalBackgroundService>();
-                });
-            });
+            YieldingAndThenCrashingCriticalBackgroundService backgroundService = new(applicationEnder);
 
-            var client = factory.CreateClient();
-            var res = await client.GetAsync("/");
+            await backgroundService.StartAsync(CancellationToken.None);
 
-            // Task is hella flaky because it depends on the internals of the IHostedService - try yielding a bunch of times
-            // to hope that it's done requesting application shutdown at this point
-            for (int i = 0; i < 10; i++)
-            {
-                await Task.Delay(50);
-                await Task.Yield();
-            }
-
-            // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
-            applicationEnder.ShutDownRequested.Should().BeTrue();
-
-
+            Task.WaitAny(new Task[] { applicationEnder.ShutDownTask }, 3000).Should().Be(0);
         }
     }
 }
