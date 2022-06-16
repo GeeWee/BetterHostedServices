@@ -4,7 +4,7 @@ namespace BetterHostedServices.Test.HostedServices
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
-
+    using Microsoft.Extensions.Logging.Abstractions;
 
     public class ImmediatelyCrashingCriticalBackgroundService : CriticalBackgroundService
     {
@@ -14,7 +14,7 @@ namespace BetterHostedServices.Test.HostedServices
             this._applicationEnder.ShutDownApplication();
         }
 
-        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
+        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime, NullLogger<ImmediatelyCrashingCriticalBackgroundService>.Instance)
         {
         }
     }
@@ -32,7 +32,7 @@ namespace BetterHostedServices.Test.HostedServices
             this._applicationEnder.ShutDownApplication();
         }
 
-        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
+        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime, NullLogger<YieldingAndThenCrashingCriticalBackgroundService>.Instance)
         {
         }
 

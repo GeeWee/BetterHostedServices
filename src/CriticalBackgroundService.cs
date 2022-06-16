@@ -2,6 +2,7 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
 
 namespace BetterHostedServices
 {
@@ -20,12 +21,14 @@ namespace BetterHostedServices
         /// Use this if you want to shutdown the application.
         /// </summary>
         protected IApplicationEnder _applicationEnder;
+        private readonly ILogger<CriticalBackgroundService> logger;
 
         /// <summary>
         /// </summary>
-        protected CriticalBackgroundService(IApplicationEnder applicationEnder)
+        protected CriticalBackgroundService(IApplicationEnder applicationEnder, ILogger<CriticalBackgroundService> logger)
         {
             this._applicationEnder = applicationEnder;
+            this.logger = logger;
         }
 
         /// <summary>

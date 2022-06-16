@@ -4,7 +4,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.AspNetCore.Mvc;
-
+    using Microsoft.Extensions.Logging.Abstractions;
 
     public interface ISomeBackgroundService
     {
@@ -13,7 +13,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
 
     public class SomeBackgroundService : CriticalBackgroundService, ISomeBackgroundService
     {
-        public SomeBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public SomeBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<SomeBackgroundService>.Instance)
         {
         }
 

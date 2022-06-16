@@ -4,6 +4,7 @@ namespace AspNetCoreTestProject
     using System.Threading;
     using System.Threading.Tasks;
     using BetterHostedServices;
+    using Microsoft.Extensions.Logging.Abstractions;
 
     public class ImmediatelyCrashingCriticalBackgroundService : CriticalBackgroundService
     {
@@ -15,7 +16,7 @@ namespace AspNetCoreTestProject
             this._applicationEnder.ShutDownApplication();
         }
 
-        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<ImmediatelyCrashingCriticalBackgroundService>.Instance)
         {
         }
     }
@@ -33,7 +34,7 @@ namespace AspNetCoreTestProject
             this._applicationEnder.ShutDownApplication();
         }
 
-        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<YieldingAndThenCrashingCriticalBackgroundService>.Instance)
         {
         }
     }
@@ -53,7 +54,7 @@ namespace AspNetCoreTestProject
             this._applicationEnder.ShutDownApplication();
         }
 
-        public StubCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public StubCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<StubCriticalBackgroundService>.Instance)
         {
         }
     }

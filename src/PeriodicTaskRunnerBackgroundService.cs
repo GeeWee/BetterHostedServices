@@ -32,7 +32,7 @@ namespace BetterHostedServices
             ILogger<PeriodicTaskRunnerBackgroundService<TPeriodicTask>> logger,
             IPeriodicTaskFactory<TPeriodicTask> taskFactory,
             PeriodicTaskFailureMode periodicTaskFailureMode,
-            TimeSpan timeBetweenTasks) : base(applicationEnder)
+            TimeSpan timeBetweenTasks) : base(applicationEnder, logger)
         {
             this.logger = logger;
             this.taskFactory = taskFactory;
