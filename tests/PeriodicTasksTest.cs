@@ -12,13 +12,6 @@ namespace BetterHostedServices.Test
 
     public class PeriodicTasksTest
     {
-        private readonly CustomWebApplicationFactory<DummyStartup> _factory;
-
-        public PeriodicTasksTest()
-        {
-            _factory = new CustomWebApplicationFactory<DummyStartup>();
-        }
-
         [Fact]
         public async Task PeriodicTask_ShouldEndApplication_IfFailureModeIsSetToCrash()
         {
@@ -34,7 +27,7 @@ namespace BetterHostedServices.Test
 
             await host.StartAsync();
 
-            Task.WaitAny(new Task[] { applicationEnder.ShutDownTask }, 3000).Should().Be(0);
+            Task.WaitAny(new Task[] { applicationEnder.ShutDownTask }, 5000).Should().Be(0);
 
             await host.StopAsync();
         }
@@ -56,7 +49,7 @@ namespace BetterHostedServices.Test
 
             await host.StartAsync();
 
-            Task.WaitAny(new Task[] { stateHolder.CalledFiveTimes }, 1000).Should().Be(0);
+            Task.WaitAny(new Task[] { stateHolder.CalledFiveTimes }, 5000).Should().Be(0);
 
             await host.StopAsync();
         }
