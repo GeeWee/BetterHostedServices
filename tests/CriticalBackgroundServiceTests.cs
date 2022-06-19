@@ -38,7 +38,7 @@ namespace BetterHostedServices.Test
 
             await backgroundService.StartAsync(CancellationToken.None);
 
-            Task.WaitAny(new Task[] { applicationEnder.ShutDownTask }, 10000).Should().Be(0);
+            Task.WaitAny(new Task[] { applicationEnder.ShutDownTask }, 5000).Should().Be(0);
         }
     }
 }
