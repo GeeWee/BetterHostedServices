@@ -72,7 +72,7 @@ namespace BetterHostedServices.Test
             // to hope that it's done requesting application shutdown at this point
             for (int i = 0; i < 10; i++)
             {
-                await Task.Delay(200); // 1s ms all in all
+                await Task.Delay(200); // 2s ms all in all
                 await Task.Yield();
             }
 
