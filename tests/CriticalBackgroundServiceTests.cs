@@ -16,28 +16,17 @@ namespace BetterHostedServices.Test
 
     public class CriticalBackgroundServiceTests
     {
-        private readonly CustomWebApplicationFactory<DummyStartup> _factory;
-
-        public CriticalBackgroundServiceTests()
-        {
-            _factory = new CustomWebApplicationFactory<DummyStartup>();
-        }
 
         [Fact]
         public void WhenBackgroundService_ErrorsWithoutYielding_ApplicationCrashes()
         {
-            var factory = this._factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
-                {
-                    services.AddHostedService<ImmediatelyCrashingCriticalBackgroundService>();
-                });
-            });
+            var applicationEnder = new ApplicationEnderTaskMock();
 
-            Action client = () => factory
-                .CreateClient();
+            ImmediatelyCrashingCriticalBackgroundService backgroundService = new(applicationEnder);
 
-            client.Should().Throw<Exception>().WithMessage("Crash right away");
+            backgroundService
+                .Invoking(backgroundService => backgroundService.StartAsync(CancellationToken.None))
+                .Should().Throw<Exception>();
         }
 
         [Fact]

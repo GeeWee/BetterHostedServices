@@ -4,7 +4,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
     using System.Threading;
     using System.Threading.Tasks;
 
-    public class CrashingPeriodicTask: IPeriodicTask
+    public class CrashingPeriodicTask : IPeriodicTask
     {
         public async Task ExecuteAsync(CancellationToken stoppingToken)
         {
@@ -13,7 +13,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
         }
     }
 
-    public class IncrementingThenCrashingPeriodicTask: IPeriodicTask
+    public class IncrementingThenCrashingPeriodicTask : IPeriodicTask
     {
         private readonly SingletonStateHolder singletonStateHolder;
 
@@ -21,7 +21,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
 
         public Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            this.singletonStateHolder.Count += 1;
+            this.singletonStateHolder.Call();
             throw new Exception("oh no");
         }
     }
@@ -33,6 +33,18 @@ namespace BetterHostedServices.Test.IntegrationUtils
 
     public class SingletonStateHolder
     {
-        public int Count { get; set; }
+        private readonly TaskCompletionSource taskCompletion = new();
+
+        public Task CalledFiveTimes => this.taskCompletion.Task;
+        private int count = 0;
+
+        public void Call()
+        {
+            this.count++;
+            if (this.count >= 5)
+            {
+                this.taskCompletion.TrySetResult();
+            }
+        }
     }
 }

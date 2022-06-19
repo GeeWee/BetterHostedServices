@@ -24,20 +24,22 @@ namespace BetterHostedServices.Test
 
             services.AddSingleton<TestPeriodicTaskFactory<TestPeriodicTask>>();
 
-            ServiceProvider provider=services.BuildServiceProvider();
+            ServiceProvider provider = services.BuildServiceProvider();
 
-            var factory=provider.GetRequiredService<TestPeriodicTaskFactory<TestPeriodicTask>>();
+            var factory = provider.GetRequiredService<TestPeriodicTaskFactory<TestPeriodicTask>>();
 
+            // Because TestPeriodicTask wasn't added to container
             factory.CanResolvePeriodicTask().Should().BeFalse();
 
 
 
             services.AddTransient<TestPeriodicTask>();
 
-            provider=services.BuildServiceProvider();
+            provider = services.BuildServiceProvider();
 
             factory = provider.GetRequiredService<TestPeriodicTaskFactory<TestPeriodicTask>>();
 
+            // Because TestPeriodicTask was added to container
             factory.CanResolvePeriodicTask().Should().BeTrue();
         }
 
