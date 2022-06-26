@@ -3,6 +3,7 @@ namespace BetterHostedServices.Test.IntegrationUtils
     using System;
     using System.Threading;
     using System.Threading.Tasks;
+    using Microsoft.Extensions.Logging;
 
     public class CrashingPeriodicTask : IPeriodicTask
     {
@@ -16,12 +17,18 @@ namespace BetterHostedServices.Test.IntegrationUtils
     public class IncrementingThenCrashingPeriodicTask : IPeriodicTask
     {
         private readonly SingletonStateHolder singletonStateHolder;
+        private readonly ILogger<IncrementingThenCrashingPeriodicTask> logger;
 
-        public IncrementingThenCrashingPeriodicTask(SingletonStateHolder singletonStateHolder) => this.singletonStateHolder = singletonStateHolder;
+        public IncrementingThenCrashingPeriodicTask(SingletonStateHolder singletonStateHolder,ILogger<IncrementingThenCrashingPeriodicTask> logger)
+        {
+            this.singletonStateHolder = singletonStateHolder;
+            this.logger = logger;
+        }
 
         public Task ExecuteAsync(CancellationToken stoppingToken)
         {
             this.singletonStateHolder.Call();
+            this.logger.LogDebug("ExecuteAsync() called {Times} times", this.singletonStateHolder.Count);
             throw new Exception("oh no");
         }
     }
@@ -34,14 +41,22 @@ namespace BetterHostedServices.Test.IntegrationUtils
     public class SingletonStateHolder
     {
         private readonly TaskCompletionSource taskCompletion = new();
+        private readonly ILogger<SingletonStateHolder> logger;
 
         public Task CalledFiveTimes => this.taskCompletion.Task;
-        private int count = 0;
+        public int Count { get; private set; } = 0;
+
+        public SingletonStateHolder(ILogger<SingletonStateHolder> logger=null)
+        {
+            this.logger = logger;
+        }
 
         public void Call()
         {
-            this.count++;
-            if (this.count >= 5)
+            this.logger?.LogDebug($"Call() called. Current calls count: {this.Count}");
+
+            this.Count++;
+            if (this.Count >= 5)
             {
                 this.taskCompletion.TrySetResult();
             }

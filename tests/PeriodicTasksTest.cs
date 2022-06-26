@@ -35,19 +35,18 @@ namespace BetterHostedServices.Test
         [Fact]
         public async Task PeriodicTask_ShouldContinueRunningTasks_IfFailureModeIsSetToRetry()
         {
-            var applicationEnder = new ApplicationEnderMock();
-            var stateHolder = new SingletonStateHolder();
-
             using IHost host = Host.CreateDefaultBuilder()
                 .ConfigureServices(services =>
                 {
-                    services.AddTransient<IApplicationEnder>(s => applicationEnder);
+                    services.AddSingleton<IApplicationEnder,ApplicationEnderMock>();
                     services.AddPeriodicTask<IncrementingThenCrashingPeriodicTask>(PeriodicTaskFailureMode.RetryLater, TimeSpan.FromMilliseconds(50));
-                    services.AddSingleton<SingletonStateHolder>(s => stateHolder);
+                    services.AddSingleton<SingletonStateHolder>();
                 })
                 .Build();
 
             await host.StartAsync();
+
+            SingletonStateHolder stateHolder = host.Services.GetRequiredService<SingletonStateHolder>();
 
             Task.WaitAny(new Task[] { stateHolder.CalledFiveTimes }, 5000).Should().Be(0);
 
