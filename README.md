@@ -5,6 +5,8 @@
 BetterHostedServices is a tiny library (<500 lines of code not including tests) that aims to improve the experience of running background tasks in ASP.NET Core.
 You can read more details about the issues and warts `IHostedService` and `BackgroundService` has [here.](https://www.gustavwengel.dk/difference-and-error-handling-between-hostedservice-and-backgroundservice) 
 
+** Note that this library is currently not actively maintained. Newer versions of the .NET Core properly crash the application when an uncaught error bubbles up from a BackgroundService. You might still find some use in the implementation of periodic tasks, but for the most part this library isn't needed anymore. **
+
 ### Installation
 From [nuget](https://www.nuget.org/packages/BetterHostedServices/1.0.0):
 ```shell
