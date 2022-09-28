@@ -4,59 +4,49 @@ namespace BetterHostedServices.Test
     using FluentAssertions;
     using IntegrationUtils;
     using Microsoft.AspNetCore.TestHost;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
     using Xunit;
 
     public class AddHostedServiceAsSingletonTests
     {
-        private readonly CustomWebApplicationFactory<DummyStartup> _factory;
-
-        public AddHostedServiceAsSingletonTests()
-        {
-            _factory = new CustomWebApplicationFactory<DummyStartup>();
-        }
 
         [Fact]
-        public async Task AddHostedServiceAsSingleton_WhenOnlyUsedWithConcreteClass_ShouldRunTheService_AndAllowForItToBeAccessibleInController()
+        public async Task AddHostedServiceAsSingleton_WhenOnlyUsedWithConcreteClass_ShouldRunTheService()
         {
-            var factory = this._factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
+            using IHost host = Host.CreateDefaultBuilder()
+                .ConfigureServices(services =>
                 {
+                    services.AddSingleton<IApplicationEnder, ApplicationEnderMock>();
                     services.AddHostedServiceAsSingleton<SomeBackgroundService>();
-                });
-            });
+                }).Build();
 
-            var client = factory
-                .CreateClient();
+            await host.StartAsync();
 
-            // The controller can get the service, and the ExecuteAsync has been called.
-            var res = await client.GetAsync("concrete");
-            res.EnsureSuccessStatusCode();
-            var content =
-                (await res.Content.ReadAsStringAsync());
-            content.Should().Be("true");
+            await Task.Delay(300);
+
+            host.Services.GetRequiredService<SomeBackgroundService>().Activated.Should().BeTrue();
+
+            await host.StopAsync();
         }
 
         [Fact]
-        public async Task AddHostedServiceAsSingleton_WhenOnlyUsedWithInterface_ShouldRunTheService_AndAllowForItToBeAccessibleInController()
+        public async Task AddHostedServiceAsSingleton_WhenOnlyUsedWithInterface_ShouldRunTheService()
         {
-            var factory = this._factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
+            using IHost host = Host.CreateDefaultBuilder()
+                .ConfigureServices(services =>
                 {
-                    services.AddHostedServiceAsSingleton<ISomeBackgroundService, SomeBackgroundService>();
-                });
-            });
+                    services.AddSingleton<IApplicationEnder, ApplicationEnderMock>();
+                    services.AddHostedServiceAsSingleton<ISomeBackgroundService,SomeBackgroundService>();
+                }).Build();
 
-            var client = factory
-                .CreateClient();
+            await host.StartAsync();
 
-            // The controller can get the service, and the ExecuteAsync has been called.
-            var res = await client.GetAsync("interface");
-            res.EnsureSuccessStatusCode();
-            var content =
-                (await res.Content.ReadAsStringAsync());
-            content.Should().Be("true");
+            await Task.Delay(300);
+
+            host.Services.GetRequiredService<ISomeBackgroundService>().Activated.Should().BeTrue();
+
+            await host.StopAsync();
         }
     }
 

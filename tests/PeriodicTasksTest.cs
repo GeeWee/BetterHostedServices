@@ -6,79 +6,51 @@ namespace BetterHostedServices.Test
     using IntegrationUtils;
     using Microsoft.AspNetCore.TestHost;
     using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging;
     using Xunit;
 
     public class PeriodicTasksTest
     {
-        private readonly CustomWebApplicationFactory<DummyStartup> _factory;
-
-        public PeriodicTasksTest()
-        {
-            _factory = new CustomWebApplicationFactory<DummyStartup>();
-        }
-
         [Fact]
         public async Task PeriodicTask_ShouldEndApplication_IfFailureModeIsSetToCrash()
         {
-            // Arrange
-            var applicationEnder = new ApplicationEnderMock();
+            var applicationEnder = new ApplicationEnderTaskMock();
 
-            var factory = this._factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
+            using IHost host=Host.CreateDefaultBuilder()
+                .ConfigureServices(services =>
                 {
                     services.AddTransient<IApplicationEnder>(s => applicationEnder);
                     services.AddPeriodicTask<CrashingPeriodicTask>(PeriodicTaskFailureMode.CrashApplication, TimeSpan.FromSeconds(1));
-                });
-            });
+                })
+                .Build();
 
-            var client = factory.CreateClient();
-            // Act & assert - we should crash here at some point
+            await host.StartAsync();
 
-            // Task is hella flaky because it depends on the internals of the IHostedService - try yielding a bunch of times
-            // to hope that it's done requesting application shutdown at this point
-            for (int i = 0; i < 10; i++)
-            {
-                await Task.Delay(50);
-                await Task.Yield();
-            }
+            Task.WaitAny(new Task[] { applicationEnder.ShutDownTask }, 5000).Should().Be(0);
 
-            // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
-            applicationEnder.ShutDownRequested.Should().BeTrue();
+            await host.StopAsync();
         }
 
         [Fact]
         public async Task PeriodicTask_ShouldContinueRunningTasks_IfFailureModeIsSetToRetry()
         {
-            // Arrange
-            var applicationEnder = new ApplicationEnderMock();
-            var stateHolder = new SingletonStateHolder();
-
-            var factory = this._factory.WithWebHostBuilder(builder =>
-            {
-                builder.ConfigureTestServices(services =>
+            using IHost host = Host.CreateDefaultBuilder()
+                .ConfigureServices(services =>
                 {
-                    services.AddTransient<IApplicationEnder>(s => applicationEnder);
+                    services.AddSingleton<IApplicationEnder,ApplicationEnderMock>();
                     services.AddPeriodicTask<IncrementingThenCrashingPeriodicTask>(PeriodicTaskFailureMode.RetryLater, TimeSpan.FromMilliseconds(50));
-                    services.AddSingleton<SingletonStateHolder>(s => stateHolder);
-                });
-            });
+                    services.AddSingleton<SingletonStateHolder>();
+                })
+                .Build();
 
-            var client = factory.CreateClient();
-            // Act & assert - we crash here after each invocation, but we truck on. The stateHolder should keep being incremented
+            await host.StartAsync();
 
-            // Task is hella flaky because it depends on the internals of the IHostedService - try yielding a bunch of times
-            // to hope that it's done requesting application shutdown at this point
-            for (int i = 0; i < 10; i++)
-            {
-                await Task.Delay(100); // 1s ms all in all
-                await Task.Yield();
-            }
+            SingletonStateHolder stateHolder = host.Services.GetRequiredService<SingletonStateHolder>();
 
-            stateHolder.Count.Should().BeGreaterThan(5);
+            Task.WaitAny(new Task[] { stateHolder.CalledFiveTimes }, 5000).Should().Be(0);
 
-            // due to https://github.com/dotnet/aspnetcore/issues/25857 we can't test if the process is closed directly
-            applicationEnder.ShutDownRequested.Should().BeFalse();
+            await host.StopAsync();
         }
     }
 }

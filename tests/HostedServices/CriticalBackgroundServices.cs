@@ -4,28 +4,28 @@ namespace BetterHostedServices.Test.HostedServices
     using System.Threading;
     using System.Threading.Tasks;
     using Microsoft.Extensions.Hosting;
+    using Microsoft.Extensions.Logging.Abstractions;
 
+    public class ImmediatelyCrashingCriticalBackgroundService : CriticalBackgroundService
+    {
+        protected override Task ExecuteAsync(CancellationToken stoppingToken) => throw new Exception("Crash right away");
 
-        public class ImmediatelyCrashingCriticalBackgroundService: CriticalBackgroundService
+        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime, NullLogger<ImmediatelyCrashingCriticalBackgroundService>.Instance)
         {
-            protected override Task ExecuteAsync(CancellationToken stoppingToken) => throw new Exception("Crash right away");
+        }
+    }
 
-            public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
-            {
-            }
+    public class YieldingAndThenCrashingCriticalBackgroundService : CriticalBackgroundService
+    {
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+        {
+            await Task.Yield(); // Hand over control explicitly, to ensure this behaviour also works
+            throw new Exception("Crash after yielding");
         }
 
-        public class YieldingAndThenCrashingCriticalBackgroundService: CriticalBackgroundService
+        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime, NullLogger<YieldingAndThenCrashingCriticalBackgroundService>.Instance)
         {
-            protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-            {
-                await Task.Yield(); // Hand over control explicitly, to ensure this behaviour also works
-                throw new Exception("Crash after yielding");
-            }
-
-            public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder lifeTime) : base(lifeTime)
-            {
-            }
+        }
 
     }
 }

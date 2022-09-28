@@ -87,7 +87,7 @@ public class YieldingAndThenCrashingCriticalBackgroundService : CriticalBackgrou
 ## AddHostedServiceAsSingleton
 Hosted Services and BackgroundServices aren't part of the dependency injection container. This means that you can't get them injected into your services or controllers. If you need to do this, you can use the `AddHostedServiceAsSingleton` extension method on the `IServiceCollection`
 
-```
+```csharp
 services.AddHostedServiceAsSingleton<ISomeBackgroundService, SomeBackgroundService>();
 ```
 After that, you can inject them via the DI container just like any ordinary singleton.
@@ -108,7 +108,7 @@ public class MyPeriodicTask: IPeriodicTask
     }
 ```
 
-```charp
+```csharp
 # In ConfigureServices
 services.AddPeriodicTask<MyPeriodicTask>(failureMode: PeriodicTaskFailureMode.CrashApplication, timeBetweenTasks: TimeSpan.FromSeconds(5));
 ```

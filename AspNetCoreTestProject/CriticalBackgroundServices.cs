@@ -4,13 +4,14 @@ namespace AspNetCoreTestProject
     using System.Threading;
     using System.Threading.Tasks;
     using BetterHostedServices;
+    using Microsoft.Extensions.Logging.Abstractions;
 
     public class ImmediatelyCrashingCriticalBackgroundService : CriticalBackgroundService
     {
         protected override Task ExecuteAsync(CancellationToken stoppingToken) =>
             throw new Exception("Crash right away");
 
-        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public ImmediatelyCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<ImmediatelyCrashingCriticalBackgroundService>.Instance)
         {
         }
     }
@@ -23,7 +24,7 @@ namespace AspNetCoreTestProject
             throw new Exception("Crash after yielding");
         }
 
-        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public YieldingAndThenCrashingCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<YieldingAndThenCrashingCriticalBackgroundService>.Instance)
         {
         }
     }
@@ -38,7 +39,7 @@ namespace AspNetCoreTestProject
             this.Activated = true;
         }
 
-        public StubCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder)
+        public StubCriticalBackgroundService(IApplicationEnder applicationEnder) : base(applicationEnder, NullLogger<StubCriticalBackgroundService>.Instance)
         {
         }
     }
